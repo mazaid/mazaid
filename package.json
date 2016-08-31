@@ -1,7 +1,7 @@
 {
   "name": "mazaid",
   "version": "0.1.0",
-  "description": "hackable monitring system",
+  "description": "hackable monitoring system",
   "main": "index.js",
   "scripts": {
     "docs": "rm -rf ./docs && ./node_modules/.bin/jsdoc ./ -c ./.jsdoc.json --verbose && open ./docs/index.html",
