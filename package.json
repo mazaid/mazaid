@@ -1,6 +1,6 @@
 {
   "name": "mazaid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "hackable monitoring system",
   "main": "index.js",
   "scripts": {
