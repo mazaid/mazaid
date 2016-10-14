@@ -33,7 +33,7 @@
     "maf": "^0.4.5",
     "mazaid-error": "^0.3.1",
     "mazaid-rest-check-tasks": "^0.1.6",
-    "mazaid-rest-checks": "^0.1.3",
+    "mazaid-rest-checks": "^0.1.5",
     "mazaid-rest-exec-tasks": "^0.2.0",
     "md5": "^2.2.1",
     "mongodb": "^2.2.10",
