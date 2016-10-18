@@ -1,5 +1,5 @@
 var path = require('path');
-
+var express = require('maf/vendors/express');
 var logger = require('maf/Service/Logger')('mazaid');
 
 process.on('unhandledRejection', (error) => {
@@ -19,6 +19,12 @@ require(path.join(__dirname, '/init/config'))()
         };
 
         var app = require('maf/Service/Application')(di, appConfig);
+
+        app.use('/', express.static(__dirname + '/node_modules/mazaid-web/public'));
+
+        app.get('/feConfig', function (req, res) {
+            res.json(di.config.feConfig);
+        });
 
         // if _debug
         app.use((req, res, next) => {

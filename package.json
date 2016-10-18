@@ -30,11 +30,12 @@
   "dependencies": {
     "joi": "^9.1.1",
     "lodash": "^4.16.4",
-    "maf": "^0.4.6-beta",
+    "maf": "^0.4.6",
     "mazaid-error": "^0.3.1",
     "mazaid-rest-check-tasks": "^0.2.3",
     "mazaid-rest-checks": "^0.1.12",
     "mazaid-rest-exec-tasks": "^0.2.5",
+    "mazaid-web": "^0.1.1",
     "md5": "^2.2.1",
     "mongodb": "^2.2.10",
     "repl-extra": "^0.1.3",
