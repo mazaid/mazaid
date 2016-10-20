@@ -39,9 +39,39 @@ require(path.join(__dirname, '/init/config'))()
                 });
         });
 
-        app.post('/_profile/memory', function (req, res) {
+        app.post('/_profile/cpu/start', function (req, res) {
+
+            logger.info('[POST /_profile/cpu/start] starting cpu profile');
+
+            nprof.startCpuProfile();
+            res.json({result: 'started'});
+        });
+
+        app.post('/_profile/cpu/stop', function (req, res) {
+
+            logger.info('[POST /_profile/cpu/stop] stopping cpu profile');
+
+            var profile = nprof.stopCpuProfile();
+
+            nprof.saveCpuProfile(profile, di.config.nprof.snapshotPath)
+                .then((info) => {
+                    logger.info('[POST /_profile/cpu/stop] profile saved to ' + info.filepath);
+                    res.json({result: info});
+                })
+                .catch((error) => {
+                    logger.error(error);
+                    res.status(500).json({error: error.message});
+                });
+
+        });
+
+        app.post('/_profile/mem', function (req, res) {
+
+            logger.info('[POST /_profile/mem] taking memory snapshot');
+
             nprof.takeMemorySnapshot(di.config.nprof.snapshotPath)
                 .then((info) => {
+                    logger.info('[POST /_profile/mem] memory snapshot saved to ' + info.filepath);
                     res.json({result: info});
                 })
                 .catch((error) => {
