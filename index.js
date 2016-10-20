@@ -2,6 +2,8 @@ var path = require('path');
 var express = require('maf/vendors/express');
 var logger = require('maf/Service/Logger')('mazaid');
 
+var nprof = require('nprof');
+
 process.on('unhandledRejection', (error) => {
     logger.fatal(error);
 });
@@ -24,6 +26,28 @@ require(path.join(__dirname, '/init/config'))()
 
         app.get('/feConfig', function (req, res) {
             res.json(di.config.feConfig);
+        });
+
+        app.post('/_profile/cpu', function (req, res) {
+            nprof.cpuProfile(di.config.nprof.snapshotPath, 5000)
+                .then((info) => {
+                    res.json({result: info});
+                })
+                .catch((error) => {
+                    logger.error(error);
+                    res.status(500).json({error: error.message});
+                });
+        });
+
+        app.post('/_profile/memory', function (req, res) {
+            nprof.takeMemorySnapshot(di.config.nprof.snapshotPath)
+                .then((info) => {
+                    res.json({result: info});
+                })
+                .catch((error) => {
+                    logger.error(error);
+                    res.status(500).json({error: error.message});
+                });
         });
 
         // if _debug

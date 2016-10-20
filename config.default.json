@@ -6,6 +6,10 @@
         "base": "/"
     },
 
+    "nprof": {
+        "snapshotPath": "/data/tmp/mazaid"
+    },
+
     "db": {
         "dsl": "mongodb://localhost:27017/mazaid"
     },
